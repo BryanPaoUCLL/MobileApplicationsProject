@@ -1,5 +1,6 @@
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, useColorScheme } from 'react-native';
 import { Text } from './Text';
+import { getThemeColors } from '../../theme/theme';
 
 interface InputFieldProps {
   label: string;
@@ -20,6 +21,8 @@ export function InputField({
   error,
   testID,
 }: InputFieldProps) {
+  const colors = getThemeColors(useColorScheme());
+
   return (
     <View style={styles.container}>
       <Text size="sm" weight="medium">{label}</Text>
@@ -27,18 +30,34 @@ export function InputField({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
+        placeholderTextColor={colors.mutedText}
         secureTextEntry={secureTextEntry}
-        style={[styles.input, error !== undefined && styles.inputError]}
+        style={[
+          styles.input,
+          {
+            backgroundColor: colors.inputBackground,
+            borderColor: colors.border,
+            color: colors.text,
+          },
+          error !== undefined && { borderColor: colors.danger },
+        ]}
         testID={testID}
         autoCapitalize="none"
       />
-      {error !== undefined && <Text size="sm" color="red">{error}</Text>}
+      {error !== undefined && <Text size="sm" color={colors.danger}>{error}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  input: {},
-  inputError: {},
+  container: {
+    gap: 6,
+  },
+  input: {
+    minHeight: 48,
+    paddingHorizontal: 14,
+    borderWidth: 1,
+    borderRadius: 12,
+    fontSize: 16,
+  },
 });

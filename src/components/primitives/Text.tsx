@@ -1,4 +1,5 @@
-import { Text as RNText, StyleSheet } from 'react-native';
+import { Text as RNText, StyleSheet, useColorScheme } from 'react-native';
+import { getThemeColors } from '../../theme/theme';
 
 interface TextProps {
   children: React.ReactNode;
@@ -17,6 +18,8 @@ export function Text({
   align = 'left',
   numberOfLines,
 }: TextProps) {
+  const colors = getThemeColors(useColorScheme());
+
   return (
     <RNText
       style={[
@@ -24,7 +27,7 @@ export function Text({
         styles[size],
         styles[weight],
         { textAlign: align },
-        color !== undefined && { color },
+        { color: color ?? colors.text },
       ]}
       numberOfLines={numberOfLines}
     >
@@ -34,9 +37,7 @@ export function Text({
 }
 
 const styles = StyleSheet.create({
-  base: {
-    color: '#111827',
-  },
+  base: {},
   sm: { fontSize: 12, lineHeight: 16 },
   md: { fontSize: 14, lineHeight: 20 },
   lg: { fontSize: 16, lineHeight: 24 },
