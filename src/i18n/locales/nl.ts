@@ -5,7 +5,13 @@ export const nl = {
   },
   navigation: {
     dashboard: 'Overzicht',
+    overview: 'Overzicht',
+    games: 'Games',
     details: 'Aankoopdetails',
+    home: 'Home',
+    menu: 'Navigatie',
+    openMenu: 'Navigatiemenu openen',
+    closeMenu: 'Navigatiemenu sluiten',
   },
   landing: {
     eyebrow: 'EEN DUIDELIJK OVERZICHT VAN JE GAME-UITGAVEN',
@@ -49,6 +55,31 @@ export const nl = {
     emptyTitle: 'Nog geen aankopen',
     emptyDescription:
       'Voeg je eerste gameaankoop toe om je uitgavenoverzicht op te bouwen.',
+  },
+  overview: {
+    title: 'Uitgavenoverzicht',
+    subtitle: 'Een momentopname van je gameaankopen.',
+    lastThirtyDays: 'Laatste 30 dagen',
+    purchases: 'Aankopen',
+    topGame: 'Topgame',
+    recentPurchases: 'Recente aankopen',
+  },
+  games: {
+    title: 'Jouw games',
+    subtitle: 'Elke game die gekoppeld is aan je bijgehouden aankopen.',
+    totalSpent: 'Totaal uitgegeven',
+    purchaseCount_one: '{{count}} aankoop',
+    purchaseCount_other: '{{count}} aankopen',
+  },
+  categories: {
+    virtualCurrency: 'Virtuele valuta',
+    battlePass: 'Battle pass',
+    subscription: 'Abonnement',
+    cosmetic: 'Cosmetisch',
+  },
+  time: {
+    daysAgo_one: '{{count}} dag geleden',
+    daysAgo_other: '{{count}} dagen geleden',
   },
   details: {
     title: 'Aankoopdetails',

@@ -19,14 +19,14 @@ export default function LoginScreen() {
 	const { t } = useTranslation();
 
 	if (isInitialized && isAuthenticated) {
-		return <Redirect href="/dashboard" />;
+		return <Redirect href="/overview" />;
 	}
 
 	const handleLogin = async () => {
 		setError("");
 		try {
 			await login(email, password);
-			router.replace("/dashboard");
+			router.replace("/overview");
 		} catch (loginError) {
 			setError(loginError instanceof Error ? loginError.message : t("login.errorFallback"));
 		}

@@ -1,4 +1,5 @@
-import { Redirect, Stack } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { Redirect, Tabs } from 'expo-router';
 import { StyleSheet, useColorScheme, View } from 'react-native';
 import { Spinner } from '../../src/components/primitives/Spinner';
 import { useAuthStore } from '../../src/state/useAuthStore';
@@ -24,17 +25,46 @@ export default function AppLayout() {
   }
 
   return (
-    <Stack
+    <Tabs
       screenOptions={{
-        contentStyle: { backgroundColor: colors.background },
+        headerShown: false,
         headerStyle: { backgroundColor: colors.surface },
         headerTintColor: colors.text,
-        headerShadowVisible: true,
+        tabBarActiveTintColor: colors.accentText,
+        tabBarInactiveTintColor: colors.mutedText,
+        tabBarStyle: {
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
+        },
       }}
     >
-      <Stack.Screen name="dashboard" options={{ title: t('navigation.dashboard') }} />
-      <Stack.Screen name="details/[id]" options={{ title: t('navigation.details') }} />
-    </Stack>
+      <Tabs.Screen
+        name="overview"
+        options={{
+          title: t('navigation.overview'),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons color={color} name="stats-chart-outline" size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="games"
+        options={{
+          title: t('navigation.games'),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons color={color} name="game-controller-outline" size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="details/[id]"
+        options={{
+          href: null,
+          headerShown: true,
+          title: t('navigation.details'),
+        }}
+      />
+    </Tabs>
   );
 }
 

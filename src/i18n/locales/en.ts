@@ -5,7 +5,13 @@ export const en = {
 	},
 	navigation: {
 		dashboard: "Dashboard",
+		overview: "Overview",
+		games: "Games",
 		details: "Purchase details",
+		home: "Home",
+		menu: "Navigation",
+		openMenu: "Open navigation menu",
+		closeMenu: "Close navigation menu",
 	},
 	landing: {
 		eyebrow: "A CLEARER VIEW OF GAMING SPEND",
@@ -48,6 +54,31 @@ export const en = {
 		description: "Your spending overview will appear here.",
 		emptyTitle: "No purchases yet",
 		emptyDescription: "Add your first game purchase to start building your spending overview.",
+	},
+	overview: {
+		title: "Spending overview",
+		subtitle: "A snapshot of your gaming purchases.",
+		lastThirtyDays: "Last 30 days",
+		purchases: "Purchases",
+		topGame: "Top game",
+		recentPurchases: "Recent purchases",
+	},
+	games: {
+		title: "Your games",
+		subtitle: "Every game connected to your tracked purchases.",
+		totalSpent: "Total spent",
+		purchaseCount_one: "{{count}} purchase",
+		purchaseCount_other: "{{count}} purchases",
+	},
+	categories: {
+		virtualCurrency: "Virtual currency",
+		battlePass: "Battle pass",
+		subscription: "Subscription",
+		cosmetic: "Cosmetic",
+	},
+	time: {
+		daysAgo_one: "{{count}} day ago",
+		daysAgo_other: "{{count}} days ago",
 	},
 	details: {
 		title: "Purchase details",
