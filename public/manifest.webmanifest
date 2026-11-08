@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "Lavish Gamers",
+  "short_name": "Lavish Gamers",
+  "description": "Track gaming purchases and compare regional prices across currencies.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#F6C445",
+  "categories": ["finance", "games", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
