@@ -77,7 +77,7 @@ export const mockGameCatalog: MockGameCatalogItem[] = [
     id: 'game-3',
     name: 'Genshin Impact',
     publisher: 'HoYoverse',
-    genres: ['Action RPG', 'Open world'],
+    genres: ['Action RPG', 'Open world', 'Gacha game'],
   },
   {
     id: 'game-4',
@@ -107,6 +107,6 @@ export const mockGameCatalog: MockGameCatalogItem[] = [
     id: 'game-8',
     name: 'Honkai: Star Rail',
     publisher: 'HoYoverse',
-    genres: ['Turn-based RPG', 'Strategy'],
+    genres: ['Turn-based RPG', 'Strategy', 'Gacha game'],
   },
 ];
