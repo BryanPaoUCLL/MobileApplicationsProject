@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, View, useColorScheme } from "react-native";
 import { Redirect, router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthStore } from "../src/state/useAuthStore";
 import { InputField } from "../src/components/primitives/InputField";
@@ -34,6 +35,21 @@ export default function LoginScreen() {
 
 	return (
 		<SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+			<View style={styles.closeRow}>
+				<Pressable
+					accessibilityLabel={t("login.close")}
+					accessibilityRole="button"
+					hitSlop={8}
+					onPress={() => router.replace("/")}
+					style={({ pressed }) => [
+						styles.closeButton,
+						{ backgroundColor: colors.surface, borderColor: colors.border },
+						pressed && styles.pressed,
+					]}
+				>
+					<Ionicons color={colors.text} name="close" size={28} />
+				</Pressable>
+			</View>
 			<Stack gap="lg" padding="lg">
 				<Text size="xl" weight="bold" align="center">
 					{t("login.title")}
@@ -66,4 +82,21 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
 	container: { flex: 1 },
+	closeRow: {
+		minHeight: 56,
+		alignItems: "flex-end",
+		justifyContent: "center",
+		paddingHorizontal: 20,
+	},
+	closeButton: {
+		width: 44,
+		height: 44,
+		alignItems: "center",
+		justifyContent: "center",
+		borderWidth: 1,
+		borderRadius: 12,
+	},
+	pressed: {
+		opacity: 0.72,
+	},
 });

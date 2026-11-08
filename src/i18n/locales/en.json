@@ -42,7 +42,8 @@
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
     "passwordLabel": "Password",
-    "errorFallback": "Login failed. Check your credentials."
+    "errorFallback": "Login failed. Check your credentials.",
+    "close": "Close login and return home"
   },
   "dashboard": {
     "welcome": "Welcome, {{name}}",

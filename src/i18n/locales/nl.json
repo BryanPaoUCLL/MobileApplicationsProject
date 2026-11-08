@@ -42,7 +42,8 @@
     "emailLabel": "E-mailadres",
     "emailPlaceholder": "jij@voorbeeld.be",
     "passwordLabel": "Wachtwoord",
-    "errorFallback": "Aanmelden mislukt. Controleer je gegevens."
+    "errorFallback": "Aanmelden mislukt. Controleer je gegevens.",
+    "close": "Aanmelden sluiten en terugkeren naar home"
   },
   "dashboard": {
     "welcome": "Welkom, {{name}}",
