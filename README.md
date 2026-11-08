@@ -50,7 +50,13 @@ cd MobileApplicationsProject
 npm install
 ```
 
-Create `.env.local`:
+Copy the example environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+On Windows PowerShell, use `Copy-Item .env.example .env.local` instead. Then replace the publishable-key placeholder in `.env.local`:
 
 ```env
 EXPO_PUBLIC_SUPABASE_URL=https://ifxqlzkptuhewqqfqqng.supabase.co
