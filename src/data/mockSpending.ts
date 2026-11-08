@@ -14,13 +14,6 @@ export interface MockPurchase {
   daysAgo: number;
 }
 
-export interface MockGameCatalogItem {
-  id: string;
-  name: string;
-  publisher: string;
-  genres: string[];
-}
-
 export const mockPurchases: MockPurchase[] = [
   {
     id: 'purchase-1',
@@ -57,56 +50,5 @@ export const mockPurchases: MockPurchase[] = [
     amountMinor: 399,
     currency: 'EUR',
     daysAgo: 23,
-  },
-];
-
-export const mockGameCatalog: MockGameCatalogItem[] = [
-  {
-    id: 'game-1',
-    name: 'Fortnite',
-    publisher: 'Epic Games',
-    genres: ['Battle royale', 'Shooter'],
-  },
-  {
-    id: 'game-2',
-    name: 'Overwatch 2',
-    publisher: 'Blizzard Entertainment',
-    genres: ['Hero shooter', 'Shooter'],
-  },
-  {
-    id: 'game-3',
-    name: 'Genshin Impact',
-    publisher: 'HoYoverse',
-    genres: ['Action RPG', 'Open world', 'Gacha game'],
-  },
-  {
-    id: 'game-4',
-    name: 'Minecraft',
-    publisher: 'Mojang Studios',
-    genres: ['Sandbox', 'Survival'],
-  },
-  {
-    id: 'game-5',
-    name: 'Valorant',
-    publisher: 'Riot Games',
-    genres: ['Tactical shooter', 'Shooter'],
-  },
-  {
-    id: 'game-6',
-    name: 'League of Legends',
-    publisher: 'Riot Games',
-    genres: ['MOBA', 'Strategy'],
-  },
-  {
-    id: 'game-7',
-    name: 'Apex Legends',
-    publisher: 'Electronic Arts',
-    genres: ['Battle royale', 'Shooter'],
-  },
-  {
-    id: 'game-8',
-    name: 'Honkai: Star Rail',
-    publisher: 'HoYoverse',
-    genres: ['Turn-based RPG', 'Strategy', 'Gacha game'],
   },
 ];

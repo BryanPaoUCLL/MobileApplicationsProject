@@ -1,29 +1,72 @@
-import { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, TextInput, View, useColorScheme } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
+  useColorScheme,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Screen } from '../../src/components/primitives/Screen';
+import { Spinner } from '../../src/components/primitives/Spinner';
 import { Text } from '../../src/components/primitives/Text';
 import { AppHeader } from '../../src/components/AppHeader';
-import { mockGameCatalog } from '../../src/data/mockSpending';
 import { getThemeColors } from '../../src/theme/theme';
 import { useAuthStore } from '../../src/state/useAuthStore';
+import {
+  getGameCatalog,
+  type GameCatalogItem,
+} from '../../src/services/gameService';
 
 export default function GamesScreen() {
   const colors = getThemeColors(useColorScheme());
   const { t } = useTranslation();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const [games, setGames] = useState<GameCatalogItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
 
+  useEffect(() => {
+    let isActive = true;
+
+    setIsLoading(true);
+    setLoadError(false);
+
+    void getGameCatalog()
+      .then((catalog) => {
+        if (isActive) {
+          setGames(catalog);
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setLoadError(true);
+        }
+      })
+      .finally(() => {
+        if (isActive) {
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [reloadKey]);
+
   const genres = useMemo(
-    () => Array.from(new Set(mockGameCatalog.flatMap((game) => game.genres))).sort(),
-    [],
+    () => Array.from(new Set(games.flatMap((game) => game.genres))).sort(),
+    [games],
   );
 
   const filteredGames = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLocaleLowerCase();
 
-    return mockGameCatalog.filter((game) => {
+    return games.filter((game) => {
       const matchesGenre = selectedGenre === null || game.genres.includes(selectedGenre);
       const searchableText = [game.name, game.publisher, ...game.genres]
         .join(' ')
@@ -32,7 +75,7 @@ export default function GamesScreen() {
 
       return matchesGenre && matchesSearch;
     });
-  }, [searchQuery, selectedGenre]);
+  }, [games, searchQuery, selectedGenre]);
 
   return (
     <Screen padding="none">
@@ -83,7 +126,37 @@ export default function GamesScreen() {
         </View>
 
         <View style={styles.gameGrid}>
-          {filteredGames.map((game) => (
+          {isLoading && (
+            <View style={styles.loadingState}>
+              <Spinner color={colors.accent} size="large" />
+            </View>
+          )}
+
+          {!isLoading && loadError && (
+            <View style={[styles.emptyState, { borderColor: colors.border }]}>
+              <Text size="lg" weight="bold" align="center">
+                {t('games.loadErrorTitle')}
+              </Text>
+              <Text color={colors.mutedText} align="center">
+                {t('games.loadErrorDescription')}
+              </Text>
+              <Pressable
+                accessibilityRole="button"
+                onPress={() => setReloadKey((current) => current + 1)}
+                style={({ pressed }) => [
+                  styles.retryButton,
+                  { backgroundColor: colors.accent },
+                  pressed && styles.pressed,
+                ]}
+              >
+                <Text color={colors.buttonText} weight="bold">
+                  {t('games.retry')}
+                </Text>
+              </Pressable>
+            </View>
+          )}
+
+          {!isLoading && !loadError && filteredGames.map((game) => (
             <View
               key={game.id}
               style={[
@@ -91,17 +164,15 @@ export default function GamesScreen() {
                 { backgroundColor: colors.surface, borderColor: colors.border },
               ]}
             >
-              <View style={[styles.gameArtwork, { backgroundColor: colors.accentSoft }]}>
-                <Text size="xl" color={colors.accentText} weight="bold">
-                  {game.name.charAt(0)}
-                </Text>
-              </View>
+              <GameArtwork imageUrl={game.coverImageUrl} name={game.name} />
 
               <View style={styles.gameInfo}>
                 <Text size="lg" weight="bold">
                   {game.name}
                 </Text>
-                <Text color={colors.mutedText}>{game.publisher}</Text>
+                <Text color={colors.mutedText}>
+                  {game.publisher ?? t('games.unknownPublisher')}
+                </Text>
                 <View style={styles.genreList}>
                   {game.genres.map((genre) => (
                     <View
@@ -118,7 +189,7 @@ export default function GamesScreen() {
             </View>
           ))}
 
-          {filteredGames.length === 0 && (
+          {!isLoading && !loadError && filteredGames.length === 0 && (
             <View style={[styles.emptyState, { borderColor: colors.border }]}>
               <Text size="lg" weight="bold" align="center">
                 {t('games.noResultsTitle')}
@@ -131,6 +202,40 @@ export default function GamesScreen() {
         </View>
       </View>
     </Screen>
+  );
+}
+
+interface GameArtworkProps {
+  imageUrl: string | null;
+  name: string;
+}
+
+function GameArtwork({ imageUrl, name }: GameArtworkProps) {
+  const colors = getThemeColors(useColorScheme());
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [imageUrl]);
+
+  if (imageUrl !== null && !hasError) {
+    return (
+      <Image
+        accessibilityLabel={name}
+        onError={() => setHasError(true)}
+        resizeMode="cover"
+        source={{ uri: imageUrl }}
+        style={styles.gameArtworkImage}
+      />
+    );
+  }
+
+  return (
+    <View style={[styles.gameArtwork, { backgroundColor: colors.accentSoft }]}>
+      <Text size="xl" color={colors.accentText} weight="bold">
+        {name.charAt(0)}
+      </Text>
+    </View>
   );
 }
 
@@ -216,9 +321,14 @@ const styles = StyleSheet.create({
     borderRadius: 18,
   },
   gameArtwork: {
-    height: 112,
+    height: 180,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 14,
+  },
+  gameArtworkImage: {
+    width: '100%',
+    height: 180,
     borderRadius: 14,
   },
   gameInfo: {
@@ -241,6 +351,20 @@ const styles = StyleSheet.create({
     padding: 32,
     borderWidth: 1,
     borderRadius: 18,
+  },
+  loadingState: {
+    width: '100%',
+    minHeight: 220,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  retryButton: {
+    minHeight: 44,
+    paddingHorizontal: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 6,
+    borderRadius: 12,
   },
   pressed: {
     opacity: 0.72,

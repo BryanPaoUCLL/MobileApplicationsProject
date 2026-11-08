@@ -69,7 +69,11 @@
     "searchPlaceholder": "Zoek op game, uitgever of genre",
     "allGenres": "Alle genres",
     "noResultsTitle": "Geen games gevonden",
-    "noResultsDescription": "Probeer een andere zoekterm of genrefilter."
+    "noResultsDescription": "Probeer een andere zoekterm of genrefilter.",
+    "unknownPublisher": "Onbekende uitgever",
+    "loadErrorTitle": "Games konden niet worden geladen",
+    "loadErrorDescription": "Controleer je verbinding en probeer opnieuw.",
+    "retry": "Opnieuw proberen"
   },
   "categories": {
     "virtualCurrency": "Virtuele valuta",

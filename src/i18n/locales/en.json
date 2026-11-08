@@ -69,7 +69,11 @@
     "searchPlaceholder": "Search by game, publisher, or genre",
     "allGenres": "All genres",
     "noResultsTitle": "No games found",
-    "noResultsDescription": "Try another search or genre filter."
+    "noResultsDescription": "Try another search or genre filter.",
+    "unknownPublisher": "Unknown publisher",
+    "loadErrorTitle": "Could not load games",
+    "loadErrorDescription": "Check your connection and try again.",
+    "retry": "Try again"
   },
   "categories": {
     "virtualCurrency": "Virtual currency",
