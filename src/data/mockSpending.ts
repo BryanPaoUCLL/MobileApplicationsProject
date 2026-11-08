@@ -14,13 +14,11 @@ export interface MockPurchase {
   daysAgo: number;
 }
 
-export interface MockGame {
+export interface MockGameCatalogItem {
   id: string;
   name: string;
   publisher: string;
-  purchaseCount: number;
-  totalSpentMinor: number;
-  currency: 'EUR';
+  genres: string[];
 }
 
 export const mockPurchases: MockPurchase[] = [
@@ -62,37 +60,53 @@ export const mockPurchases: MockPurchase[] = [
   },
 ];
 
-export const mockGames: MockGame[] = [
+export const mockGameCatalog: MockGameCatalogItem[] = [
   {
     id: 'game-1',
     name: 'Fortnite',
     publisher: 'Epic Games',
-    purchaseCount: 1,
-    totalSpentMinor: 899,
-    currency: 'EUR',
+    genres: ['Battle royale', 'Shooter'],
   },
   {
     id: 'game-2',
     name: 'Overwatch 2',
     publisher: 'Blizzard Entertainment',
-    purchaseCount: 1,
-    totalSpentMinor: 999,
-    currency: 'EUR',
+    genres: ['Hero shooter', 'Shooter'],
   },
   {
     id: 'game-3',
     name: 'Genshin Impact',
     publisher: 'HoYoverse',
-    purchaseCount: 1,
-    totalSpentMinor: 599,
-    currency: 'EUR',
+    genres: ['Action RPG', 'Open world'],
   },
   {
     id: 'game-4',
     name: 'Minecraft',
     publisher: 'Mojang Studios',
-    purchaseCount: 1,
-    totalSpentMinor: 399,
-    currency: 'EUR',
+    genres: ['Sandbox', 'Survival'],
+  },
+  {
+    id: 'game-5',
+    name: 'Valorant',
+    publisher: 'Riot Games',
+    genres: ['Tactical shooter', 'Shooter'],
+  },
+  {
+    id: 'game-6',
+    name: 'League of Legends',
+    publisher: 'Riot Games',
+    genres: ['MOBA', 'Strategy'],
+  },
+  {
+    id: 'game-7',
+    name: 'Apex Legends',
+    publisher: 'Electronic Arts',
+    genres: ['Battle royale', 'Shooter'],
+  },
+  {
+    id: 'game-8',
+    name: 'Honkai: Star Rail',
+    publisher: 'HoYoverse',
+    genres: ['Turn-based RPG', 'Strategy'],
   },
 ];
