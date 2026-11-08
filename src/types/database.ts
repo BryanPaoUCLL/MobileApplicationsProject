@@ -54,7 +54,7 @@ export type Database = {
           logo_url: string | null
           name: string
           updated_at: string
-          user_id: string
+          user_id: string | null
           website_url: string | null
         }
         Insert: {
@@ -64,7 +64,7 @@ export type Database = {
           logo_url?: string | null
           name: string
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
           website_url?: string | null
         }
         Update: {
@@ -74,7 +74,7 @@ export type Database = {
           logo_url?: string | null
           name?: string
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
           website_url?: string | null
         }
         Relationships: []
@@ -155,7 +155,7 @@ export type Database = {
           game_id: string
           is_primary: boolean
           role: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           company_id: string
@@ -163,7 +163,7 @@ export type Database = {
           game_id: string
           is_primary?: boolean
           role: string
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           company_id?: string
@@ -171,22 +171,22 @@ export type Database = {
           game_id?: string
           is_primary?: boolean
           role?: string
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "game_companies_company_id_user_id_fkey"
-            columns: ["company_id", "user_id"]
+            foreignKeyName: "game_companies_company_id_fkey"
+            columns: ["company_id"]
             isOneToOne: false
             referencedRelation: "companies"
-            referencedColumns: ["id", "user_id"]
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "game_companies_game_id_user_id_fkey"
-            columns: ["game_id", "user_id"]
+            foreignKeyName: "game_companies_game_id_fkey"
+            columns: ["game_id"]
             isOneToOne: false
             referencedRelation: "games"
-            referencedColumns: ["id", "user_id"]
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -197,7 +197,7 @@ export type Database = {
           name: string
           release_date: string | null
           updated_at: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -205,7 +205,7 @@ export type Database = {
           name: string
           release_date?: string | null
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -213,7 +213,58 @@ export type Database = {
           name?: string
           release_date?: string | null
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      game_genres: {
+        Row: {
+          created_at: string
+          game_id: string
+          genre_slug: string
+        }
+        Insert: {
+          created_at?: string
+          game_id: string
+          genre_slug: string
+        }
+        Update: {
+          created_at?: string
+          game_id?: string
+          genre_slug?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_genres_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "game_genres_genre_slug_fkey"
+            columns: ["genre_slug"]
+            isOneToOne: false
+            referencedRelation: "genres"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      genres: {
+        Row: {
+          created_at: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          name?: string
+          slug?: string
         }
         Relationships: []
       }
@@ -257,11 +308,11 @@ export type Database = {
             referencedColumns: ["slug"]
           },
           {
-            foreignKeyName: "products_game_id_user_id_fkey"
-            columns: ["game_id", "user_id"]
+            foreignKeyName: "products_game_id_fkey"
+            columns: ["game_id"]
             isOneToOne: false
             referencedRelation: "games"
-            referencedColumns: ["id", "user_id"]
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -481,11 +532,11 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "stores_company_id_user_id_fkey"
-            columns: ["company_id", "user_id"]
+            foreignKeyName: "stores_company_id_fkey"
+            columns: ["company_id"]
             isOneToOne: false
             referencedRelation: "companies"
-            referencedColumns: ["id", "user_id"]
+            referencedColumns: ["id"]
           },
         ]
       }
