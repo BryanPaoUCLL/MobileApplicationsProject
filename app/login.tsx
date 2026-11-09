@@ -50,32 +50,34 @@ export default function LoginScreen() {
 					<Ionicons color={colors.text} name="close" size={28} />
 				</Pressable>
 			</View>
-			<Stack gap="lg" padding="lg">
-				<Text size="xl" weight="bold" align="center">
-					{t("login.title")}
-				</Text>
-				<InputField
-					label={t("login.emailLabel")}
-					value={email}
-					onChangeText={setEmail}
-					placeholder={t("login.emailPlaceholder")}
-					testID="email-input"
-				/>
-				<InputField
-					label={t("login.passwordLabel")}
-					value={password}
-					onChangeText={setPassword}
-					secureTextEntry
-					testID="password-input"
-					error={error !== "" ? error : undefined}
-				/>
-				<StyledButton
-					label={t("common.login")}
-					onPress={handleLogin}
-					isLoading={isLoading}
-					testID="login-button"
-				/>
-			</Stack>
+			<View style={styles.formContainer}>
+				<Stack gap="lg" padding="lg">
+					<Text size="xl" weight="bold" align="center">
+						{t("login.title")}
+					</Text>
+					<InputField
+						label={t("login.emailLabel")}
+						value={email}
+						onChangeText={setEmail}
+						placeholder={t("login.emailPlaceholder")}
+						testID="email-input"
+					/>
+					<InputField
+						label={t("login.passwordLabel")}
+						value={password}
+						onChangeText={setPassword}
+						secureTextEntry
+						testID="password-input"
+						error={error !== "" ? error : undefined}
+					/>
+					<StyledButton
+						label={t("common.login")}
+						onPress={handleLogin}
+						isLoading={isLoading}
+						testID="login-button"
+					/>
+				</Stack>
+			</View>
 		</SafeAreaView>
 	);
 }
@@ -95,6 +97,11 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		borderWidth: 1,
 		borderRadius: 12,
+	},
+	formContainer: {
+		width: "100%",
+		maxWidth: 480,
+		alignSelf: "center",
 	},
 	pressed: {
 		opacity: 0.72,
