@@ -4,6 +4,19 @@ Lavish Gamers is a tracker for games, microtransactions, subscriptions, and othe
 
 For example, users can compare an item costing EUR 5 in Europe with the same item costing JPY 600(~€3.5) in Japan.
 
+## Live app
+
+https://mobile-applications-project.vercel.app/
+
+## Test account
+
+Account registration is not implemented yet. Use this test account to log in:
+
+```text
+Email: testuser@example.com
+Password: testing
+```
+
 ## Target audience
 
 - Players who purchase games or in-game content.
@@ -74,15 +87,6 @@ Build and test the PWA:
 ```bash
 npx expo export --platform web
 npx expo serve
-```
-
-## Test account
-
-Use these credentials to test login:
-
-```text
-Email: testuser@example.com
-Password: testing
 ```
 
 ## Database
