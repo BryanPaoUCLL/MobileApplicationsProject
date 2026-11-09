@@ -1,6 +1,6 @@
 # Lavish Gamers
 
-Lavish Gamers is a mobile-first tracker for games, microtransactions, subscriptions, and other gaming expenses. It will help users compare regional prices by converting them into one currency.
+Lavish Gamers is a tracker for games, microtransactions, subscriptions, and other gaming expenses. It can also help users compare regional prices by converting them into one currency.
 
 For example, users can compare an item costing EUR 5 in Europe with the same item costing JPY 600(~€3.5) in Japan.
 
@@ -36,7 +36,7 @@ For example, users can compare an item costing EUR 5 in Europe with the same ite
 
 - Steam purchase history: limited to Steam purchases.
 - PlayStation and Xbox histories: limited to their own platforms.
-- Spendee and Wallet: general expense trackers without gaming-specific regional price comparisons.
+- Spendee and Wallet: general expense trackers without gaming-specific statistics, regional price comparisons.
 
 Lavish Gamers focuses on gaming expenses across games, platforms, stores, regions, and currencies.
 
@@ -78,7 +78,7 @@ npx expo serve
 
 ## Test account
 
-The public pages do not require an account. Use these credentials to test login:
+Use these credentials to test login:
 
 ```text
 Email: testuser@example.com
