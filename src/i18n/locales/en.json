@@ -6,6 +6,7 @@
   "navigation": {
     "dashboard": "Dashboard",
     "overview": "Overview",
+    "statistics": "Statistics",
     "games": "Games",
     "details": "Purchase details",
     "home": "Home",
@@ -62,6 +63,16 @@
     "loginPromptTitle": "Log in to start tracking",
     "loginPromptDescription": "Your purchases and spending insights will appear here.",
     "loginPromptAction": "Log in"
+  },
+  "statistics": {
+    "title": "Spending statistics",
+    "subtitle": "See how your gaming spending is distributed.",
+    "totalSpent": "Total spent",
+    "averagePurchase": "Average purchase",
+    "byCategory": "Spending by category",
+    "byGame": "Spending by game",
+    "loginPromptTitle": "Log in to view your statistics",
+    "loginPromptDescription": "Your spending breakdowns and trends will appear here."
   },
   "games": {
     "title": "Games catalogue",

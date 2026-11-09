@@ -6,6 +6,7 @@
   "navigation": {
     "dashboard": "Overzicht",
     "overview": "Overzicht",
+    "statistics": "Statistieken",
     "games": "Games",
     "details": "Aankoopdetails",
     "home": "Home",
@@ -62,6 +63,16 @@
     "loginPromptTitle": "Meld je aan om te beginnen met bijhouden",
     "loginPromptDescription": "Je aankopen en uitgaveninzichten verschijnen hier.",
     "loginPromptAction": "Aanmelden"
+  },
+  "statistics": {
+    "title": "Uitgavenstatistieken",
+    "subtitle": "Bekijk hoe je game-uitgaven verdeeld zijn.",
+    "totalSpent": "Totaal uitgegeven",
+    "averagePurchase": "Gemiddelde aankoop",
+    "byCategory": "Uitgaven per categorie",
+    "byGame": "Uitgaven per game",
+    "loginPromptTitle": "Meld je aan om je statistieken te bekijken",
+    "loginPromptDescription": "Je uitgavenverdeling en trends verschijnen hier."
   },
   "games": {
     "title": "Gamecatalogus",

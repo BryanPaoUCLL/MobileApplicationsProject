@@ -1,9 +1,10 @@
-const CACHE_NAME = 'lavish-gamers-v1';
+const CACHE_NAME = 'lavish-gamers-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
   '/login.html',
   '/overview.html',
+  '/statistics.html',
   '/games.html',
   '/manifest.webmanifest',
   '/icons/icon-512.png',
@@ -80,6 +81,7 @@ async function handleNavigationRequest(request, pathname) {
     const routeFallbacks = {
       '/login': '/login.html',
       '/overview': '/overview.html',
+      '/statistics': '/statistics.html',
       '/games': '/games.html',
     };
     const fallbackPath = routeFallbacks[pathname] ?? '/index.html';

@@ -25,6 +25,7 @@ export default function AppLayout() {
       }}
     >
       <Stack.Screen name="overview" />
+      <Stack.Screen name="statistics" />
       <Stack.Screen name="games" />
       <Stack.Screen name="details/[id]" />
     </Stack>

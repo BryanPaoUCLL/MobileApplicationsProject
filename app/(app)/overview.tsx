@@ -1,9 +1,10 @@
 import { router } from "expo-router";
-import { Pressable, StyleSheet, View, useColorScheme } from "react-native";
+import { Pressable, ScrollView, StyleSheet, View, useColorScheme } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Screen } from "../../src/components/primitives/Screen";
 import { Text } from "../../src/components/primitives/Text";
 import { AppHeader } from "../../src/components/AppHeader";
+import { SpendingTabBar } from "../../src/components/SpendingTabBar";
 import { useAuthStore } from "../../src/state/useAuthStore";
 import { mockPurchases } from "../../src/data/mockSpending";
 import { getThemeColors } from "../../src/theme/theme";
@@ -18,9 +19,10 @@ export default function OverviewScreen() {
 	const totalSpentMinor = visiblePurchases.reduce((total, purchase) => total + purchase.amountMinor, 0);
 
 	return (
-		<Screen padding="none">
+		<Screen padding="none" scrollable={false}>
 			<AppHeader authenticated={isAuthenticated} />
-			<View style={styles.page}>
+			<ScrollView contentContainerStyle={styles.scrollContent}>
+				<View style={styles.page}>
 				<View style={styles.intro}>
 					<Text size="xl" weight="bold">
 						{t("overview.title")}
@@ -129,12 +131,17 @@ export default function OverviewScreen() {
 						)}
 					</View>
 				</View>
-			</View>
+				</View>
+			</ScrollView>
+			<SpendingTabBar activeTab="overview" />
 		</Screen>
 	);
 }
 
 const styles = StyleSheet.create({
+	scrollContent: {
+		flexGrow: 1,
+	},
 	page: {
 		width: "100%",
 		maxWidth: 960,
